@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 const JobCard = ({ job }) => {
     const { job_title, deadline, price_range, short_description } = job;
     
@@ -19,9 +19,11 @@ const JobCard = ({ job }) => {
                         Deadline: {deadline}
                     </span>
                 </div>
-                <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-                     Job Details
-                </button>
+               <Link to={`/job-details/${job._id}`} className="w-full">
+    <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+        Job Details
+    </button>
+</Link>
             </div>
         </div>
     );

@@ -37,8 +37,8 @@ const JobTabs = () => {
                     </p>
                 </div>
                 <div className="card-actions justify-end">
-                    <Link to={`/job-details/${job._id}`} className="btn btn-primary btn-sm normal-case w-full">
-                        Bid Now
+                    <Link  className="btn btn-primary btn-sm normal-case w-full">
+                        Apply now 
                     </Link>
                 </div>
             </div>

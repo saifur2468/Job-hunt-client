@@ -34,40 +34,40 @@ const Dashboard = () => {
                             // --- ADMIN MENU ---
                             <>
                                 <li>
-                                    <NavLink to="/dashboard/adminProfile" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
+                                    <NavLink to="adminProfile" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
                                         <FaUser className="text-xl" /> Admin Profile
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/addJob" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
+                                    <NavLink to="Adminjobpost" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
                                         <FaPlusSquare className="text-xl" /> Post a Job
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/manageApplications" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
+                                    <NavLink to="Applicationmanagment" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
                                         <FaUsersCog className="text-xl" /> Application Mgmt
                                     </NavLink>
                                 </li>
-                                <li>
-                                    <NavLink to="/dashboard/allUsers" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
+                                {/* <li>
+                                    <NavLink to="/EemployMangement" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
                                         <FaUsersCog className="text-xl" /> Manage Users
                                     </NavLink>
-                                </li>
+                                </li> */}
                             </>
                         ) : (
                             // --- NORMAL USER MENU ---
                             <>
                                 <li>
-                                    <NavLink to="/dashboard/userProfile" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
+                                    <NavLink to="userprofile" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
                                         <FaUser className="text-xl" /> My Profile
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/uploadCv" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
+                                    <NavLink to="UserUploadCv" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
                                         <FaFileUpload className="text-xl" /> Upload CV
                                     </NavLink>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <NavLink to="/findJobs" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
                                         <FaSearch className="text-xl" /> Find Jobs
                                     </NavLink>
@@ -76,7 +76,7 @@ const Dashboard = () => {
                                     <NavLink to="/dashboard/appliedJobs" className={({ isActive }) => `flex items-center gap-3 p-2 font-medium uppercase transition-all ${isActive ? 'text-white bg-black/30 rounded shadow-md' : 'text-black hover:bg-black/10'}`}>
                                         <FaBriefcase className="text-xl" /> My Applied Jobs
                                     </NavLink>
-                                </li>
+                                </li> */}
                             </>
                         )
                     }
@@ -90,12 +90,12 @@ const Dashboard = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/allJobs" className="flex items-center gap-3 p-2 font-medium uppercase text-black hover:text-white transition-colors">
+                        <NavLink to="/viewalljobpost" className="flex items-center gap-3 p-2 font-medium uppercase text-black hover:text-white transition-colors">
                             <FaBriefcase className="text-xl" /> All Jobs
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/contact" className="flex items-center gap-3 p-2 font-medium uppercase text-black hover:text-white transition-colors">
+                        <NavLink to="/Contact" className="flex items-center gap-3 p-2 font-medium uppercase text-black hover:text-white transition-colors">
                             <MdContactMail className="text-xl" /> Contact Support
                         </NavLink>
                     </li>
