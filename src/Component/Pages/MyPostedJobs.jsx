@@ -58,7 +58,7 @@ const MyPostedJobs = () => {
                             <tr key={job._id} className="hover:bg-gray-50 transition-colors">
                                 <td>{index + 1}</td>
                                 <td className="font-bold">{job.job_title}</td>
-                                
+
                                 <td><span className="badge badge-ghost font-semibold">{job.category}</span></td>
                                 <td>${job.min_price} - ${job.max_price}</td>
                                 <td className="space-x-2">

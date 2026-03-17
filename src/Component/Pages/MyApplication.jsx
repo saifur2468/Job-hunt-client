@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {useAuth} from '../AuthSection/Authprovider';
+import { useAuth } from '../AuthSection/Authprovider';
 import { FaTrashAlt } from 'react-icons/fa';
-import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2';
 
 const MyApplication = () => {
     const { user } = useAuth();
@@ -20,7 +20,7 @@ const MyApplication = () => {
         }
     }, [user?.email]);
 
-    
+
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -32,17 +32,17 @@ const MyApplication = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/delete-application/${id}`, {
+                fetch(`https://job-server-five-phi.vercel.app/delete-application/${id}`, {
                     method: 'DELETE'
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        Swal.fire("Deleted!", "Your application has been removed.", "success");
-                        const remaining = appliedJobs.filter(job => job._id !== id);
-                        setAppliedJobs(remaining);
-                    }
-                });
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire("Deleted!", "Your application has been removed.", "success");
+                            const remaining = appliedJobs.filter(job => job._id !== id);
+                            setAppliedJobs(remaining);
+                        }
+                    });
             }
         });
     };
@@ -67,7 +67,7 @@ const MyApplication = () => {
                             <th className="py-4 px-6 text-center">Action</th>
                         </tr>
                     </thead>
-                    
+
                     {/* Table Body */}
                     <tbody>
                         {appliedJobs.length > 0 ? (
@@ -78,14 +78,14 @@ const MyApplication = () => {
                                     <td className="py-4 px-6 text-gray-600">{app.applied_date}</td>
                                     <td className="py-4 px-6 text-center">
                                         <span className={`px-4 py-1 rounded-full text-sm font-bold 
-                                            ${app.status === 'Pending' ? 'bg-yellow-100 text-yellow-600' : 
-                                              app.status === 'Accepted' ? 'bg-green-100 text-green-600' : 
-                                              'bg-red-100 text-red-600'}`}>
+                                            ${app.status === 'Pending' ? 'bg-yellow-100 text-yellow-600' :
+                                                app.status === 'Accepted' ? 'bg-green-100 text-green-600' :
+                                                    'bg-red-100 text-red-600'}`}>
                                             {app.status || 'Pending'}
                                         </span>
                                     </td>
                                     <td className="py-4 px-6 text-center">
-                                        <button 
+                                        <button
                                             onClick={() => handleDelete(app._id)}
                                             className="p-2 bg-red-50 text-red-500 rounded-lg hover:bg-red-500 hover:text-white transition-all"
                                             title="Delete Application"

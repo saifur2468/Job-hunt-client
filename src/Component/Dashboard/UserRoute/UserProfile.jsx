@@ -14,14 +14,14 @@ const UserProfile = () => {
 
     useEffect(() => {
         if (user?.email) {
-          
+
             fetch(`http://localhost:5000/my-applications?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     const accepted = data.filter(app => app.status === 'Accepted').length;
                     const rejected = data.filter(app => app.status === 'Rejected').length;
                     const pending = data.filter(app => app.status === 'Pending' || !app.status).length;
-                    
+
                     setApplicationStats({
                         totalApplied: data.length,
                         accepted,
@@ -41,7 +41,7 @@ const UserProfile = () => {
 
     return (
         <div className="p-6 space-y-8 bg-gray-50 min-h-screen">
-          
+
             <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-8">
                 <div className="avatar">
                     <div className="w-28 rounded-full ring-4 ring-blue-100 ring-offset-base-100 ring-offset-2">
@@ -66,7 +66,7 @@ const UserProfile = () => {
                 </div>
             </div>
 
-          
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard icon={<Briefcase />} label="Total Applied" value={applicationStats.totalApplied} color="text-blue-600" bg="bg-blue-100" />
                 <StatCard icon={<CheckCircle />} label="Accepted" value={applicationStats.accepted} color="text-green-600" bg="bg-green-100" />
@@ -74,8 +74,8 @@ const UserProfile = () => {
                 <StatCard icon={<Clock />} label="Pending Review" value={applicationStats.pending} color="text-yellow-600" bg="bg-yellow-100" />
             </div>
 
-               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-             
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
                 <div className="lg:col-span-2 bg-white p-7 rounded-3xl shadow-sm border border-gray-100">
                     <div className="flex items-center justify-between mb-8">
                         <h3 className="text-xl font-bold text-gray-800">Application Activity</h3>
@@ -88,9 +88,9 @@ const UserProfile = () => {
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#6b7280', fontSize: 12}} />
-                                <YAxis axisLine={false} tickLine={false} tick={{fill: '#6b7280', fontSize: 12}} />
-                                <Tooltip cursor={{fill: 'transparent'}} contentStyle={{borderRadius: '10px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)'}} />
+                                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#6b7280', fontSize: 12 }} />
+                                <YAxis axisLine={false} tickLine={false} tick={{ fill: '#6b7280', fontSize: 12 }} />
+                                <Tooltip cursor={{ fill: 'transparent' }} contentStyle={{ borderRadius: '10px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
                                 <Bar dataKey="count" radius={[8, 8, 0, 0]} barSize={40}>
                                     {chartData.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={entry.color} />
@@ -101,7 +101,7 @@ const UserProfile = () => {
                     </div>
                 </div>
 
-               
+
                 <div className="bg-white p-7 rounded-3xl shadow-sm border border-gray-100 space-y-6">
                     <h3 className="text-xl font-bold text-gray-800">Account Overview</h3>
                     <div className="space-y-4">

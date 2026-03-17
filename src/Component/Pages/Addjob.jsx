@@ -28,7 +28,7 @@ const AddJob = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/add-job', {
+            const response = await fetch('https://job-server-five-phi.vercel.app/add-job', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

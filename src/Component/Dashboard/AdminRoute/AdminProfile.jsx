@@ -13,14 +13,14 @@ const AdminProfile = () => {
     });
 
     useEffect(() => {
-       
+
         fetch('http://localhost:5000/all-applications')
             .then(res => res.json())
             .then(data => {
                 const accepted = data.filter(app => app.status === 'Accepted').length;
                 const rejected = data.filter(app => app.status === 'Rejected').length;
                 const pending = data.filter(app => app.status === 'Pending' || !app.status).length;
-                
+
                 setStats({
                     totalApplications: data.length,
                     accepted,
@@ -30,7 +30,7 @@ const AdminProfile = () => {
             });
     }, []);
 
-    
+
     const chartData = [
         { name: 'Total', count: stats.totalApplications, color: '#3B82F6' },
         { name: 'Accepted', count: stats.accepted, color: '#10B981' },
@@ -40,7 +40,7 @@ const AdminProfile = () => {
 
     return (
         <div className="p-6 space-y-8">
-      
+
             <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white shadow-lg flex flex-col md:flex-row items-center gap-6">
                 <div className="avatar">
                     <div className="w-24 rounded-full ring ring-white ring-offset-base-100 ring-offset-2">
@@ -56,7 +56,7 @@ const AdminProfile = () => {
                 </div>
             </div>
 
-       
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard icon={<FaBriefcase />} label="Total Applied" value={stats.totalApplications} color="text-blue-600" bg="bg-blue-100" />
                 <StatCard icon={<FaCheckCircle />} label="Accepted" value={stats.accepted} color="text-green-600" bg="bg-green-100" />
@@ -64,9 +64,9 @@ const AdminProfile = () => {
                 <StatCard icon={<FaHourglassHalf />} label="Pending" value={stats.pending} color="text-yellow-600" bg="bg-yellow-100" />
             </div>
 
-       
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              
+
                 <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <h3 className="text-xl font-bold mb-6 text-gray-800">Application Analytics</h3>
                     <div className="h-80 w-full">
@@ -75,7 +75,7 @@ const AdminProfile = () => {
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                                 <XAxis dataKey="name" />
                                 <YAxis />
-                                <Tooltip cursor={{fill: 'transparent'}} />
+                                <Tooltip cursor={{ fill: 'transparent' }} />
                                 <Bar dataKey="count" radius={[5, 5, 0, 0]}>
                                     {chartData.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={entry.color} />
@@ -86,7 +86,7 @@ const AdminProfile = () => {
                     </div>
                 </div>
 
-          
+
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <h3 className="text-xl font-bold mb-4 text-gray-800">Account Details</h3>
                     <div className="space-y-4">

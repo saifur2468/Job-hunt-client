@@ -7,7 +7,7 @@ const Applicationmanagment = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/all-applications') 
+        fetch('http://localhost:5000/all-applications')
             .then(res => res.json())
             .then(data => {
                 setAllApplications(data);
@@ -15,7 +15,7 @@ const Applicationmanagment = () => {
             });
     }, []);
 
-  
+
     const handleStatusUpdate = (id, newStatus) => {
         fetch(`http://localhost:5000/update-status/${id}`, {
             method: 'PATCH',
@@ -24,24 +24,24 @@ const Applicationmanagment = () => {
             },
             body: JSON.stringify({ status: newStatus })
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.modifiedCount > 0) {
-                Swal.fire({
-                    title: "Updated!",
-                    text: `Application status is now ${newStatus}`,
-                    icon: "success",
-                    timer: 1500,
-                    showConfirmButton: false
-                });
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Updated!",
+                        text: `Application status is now ${newStatus}`,
+                        icon: "success",
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
 
-               
-                const remaining = allApplications.map(app => 
-                    app._id === id ? { ...app, status: newStatus } : app
-                );
-                setAllApplications(remaining);
-            }
-        });
+
+                    const remaining = allApplications.map(app =>
+                        app._id === id ? { ...app, status: newStatus } : app
+                    );
+                    setAllApplications(remaining);
+                }
+            });
     };
 
     if (loading) return <div className="text-center py-20 font-bold text-xl text-blue-600">Loading Applications...</div>;
@@ -54,7 +54,7 @@ const Applicationmanagment = () => {
 
             <div className="overflow-x-auto shadow-2xl rounded-2xl border border-gray-100">
                 <table className="table w-full">
-                 
+
                     <thead className="bg-gray-800 text-white">
                         <tr>
                             <th className="py-5 px-6">Applicant</th>
@@ -63,8 +63,8 @@ const Applicationmanagment = () => {
                             <th className="py-5 px-6 text-center">Set Decision</th>
                         </tr>
                     </thead>
-                    
-                   
+
+
                     <tbody>
                         {allApplications.length > 0 ? (
                             allApplications.map((app) => (
@@ -89,22 +89,22 @@ const Applicationmanagment = () => {
                                     </td>
                                     <td className="py-4 px-6 text-center">
                                         <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider
-                                            ${app.status === 'Accepted' ? 'bg-green-100 text-green-700' : 
-                                              app.status === 'Rejected' ? 'bg-red-100 text-red-700' : 
-                                              'bg-yellow-100 text-yellow-700'}`}>
+                                            ${app.status === 'Accepted' ? 'bg-green-100 text-green-700' :
+                                                app.status === 'Rejected' ? 'bg-red-100 text-red-700' :
+                                                    'bg-yellow-100 text-yellow-700'}`}>
                                             {app.status || 'Pending'}
                                         </span>
                                     </td>
                                     <td className="py-4 px-6 text-center">
                                         <div className="flex justify-center gap-2">
-                                            <button 
+                                            <button
                                                 onClick={() => handleStatusUpdate(app._id, 'Accepted')}
                                                 disabled={app.status === 'Accepted'}
                                                 className="btn btn-sm btn-success text-white hover:scale-105"
                                             >
                                                 Accept
                                             </button>
-                                            <button 
+                                            <button
                                                 onClick={() => handleStatusUpdate(app._id, 'Rejected')}
                                                 disabled={app.status === 'Rejected'}
                                                 className="btn btn-sm btn-error text-white hover:scale-105"

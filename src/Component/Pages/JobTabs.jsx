@@ -7,17 +7,17 @@ const JobTabs = () => {
     const [jobs, setJobs] = useState([]);
 
     useEffect(() => {
-       
+
         fetch('http://localhost:5000/Category-jobs')
             .then(res => res.json())
             .then(data => setJobs(data))
             .catch(err => console.error("Data load failed:", err));
     }, []);
 
-   
+
     const renderJobsByCategory = (categoryName) => {
         const filteredJobs = jobs.filter(job => job.category === categoryName);
-        
+
         if (filteredJobs.length === 0) {
             return (
                 <div className="col-span-full text-center py-10 text-gray-400 font-medium">
@@ -37,8 +37,8 @@ const JobTabs = () => {
                     </p>
                 </div>
                 <div className="card-actions justify-end">
-                    <Link  className="btn btn-primary btn-sm normal-case w-full">
-                        Apply now 
+                    <Link className="btn btn-primary btn-sm normal-case w-full">
+                        Apply now
                     </Link>
                 </div>
             </div>
