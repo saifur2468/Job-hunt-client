@@ -10,7 +10,7 @@ const JobDetails = () => {
     // const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/job/${id}`)
+        fetch(`https://kidimuservercholena.vercel.app/job/${id}`)
             .then(res => res.json())
             .then(data => setJob(data));
     }, [id]);
@@ -32,7 +32,7 @@ const JobDetails = () => {
             status: 'Pending'
         };
 
-        fetch('http://localhost:5000/apply-job', {
+        fetch('https://kidimuservercholena.vercel.app/apply-job', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(applicationData)

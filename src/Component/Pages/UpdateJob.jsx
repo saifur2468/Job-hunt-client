@@ -7,7 +7,7 @@ const UpdateJob = () => {
     const [job, setJob] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/job/${id}`)
+        fetch(`https://kidimuservercholena.vercel.app/job/${id}`)
             .then(res => res.json())
             .then(data => setJob(data));
     }, [id]);
@@ -24,7 +24,7 @@ const UpdateJob = () => {
             description: form.description.value,
         };
 
-        fetch(`http://localhost:5000/update-job/${id}`, {
+        fetch(`https://kidimuservercholena.vercel.app/update-job/${id}`, {
             method: 'PUT',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(updatedJob)

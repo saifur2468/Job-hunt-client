@@ -11,7 +11,7 @@ const MyApplication = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/my-applications?email=${user?.email}`)
+            fetch(`https://kidimuservercholena.vercel.app/my-applications?email=${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setAppliedJobs(data);
@@ -32,7 +32,7 @@ const MyApplication = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://job-server-five-phi.vercel.app/delete-application/${id}`, {
+                fetch(`https://kidimuservercholena.vercel.app/delete-application/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

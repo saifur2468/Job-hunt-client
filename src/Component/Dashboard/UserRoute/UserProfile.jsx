@@ -15,7 +15,7 @@ const UserProfile = () => {
     useEffect(() => {
         if (user?.email) {
 
-            fetch(`http://localhost:5000/my-applications?email=${user.email}`)
+            fetch(`https://kidimuservercholena.vercel.app/my-applications?email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     const accepted = data.filter(app => app.status === 'Accepted').length;

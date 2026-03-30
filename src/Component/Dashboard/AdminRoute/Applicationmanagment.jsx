@@ -7,7 +7,7 @@ const Applicationmanagment = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/all-applications')
+        fetch('https://kidimuservercholena.vercel.app/all-applications')
             .then(res => res.json())
             .then(data => {
                 setAllApplications(data);
@@ -17,7 +17,7 @@ const Applicationmanagment = () => {
 
 
     const handleStatusUpdate = (id, newStatus) => {
-        fetch(`http://localhost:5000/update-status/${id}`, {
+        fetch(`https://kidimuservercholena.vercel.app/update-status/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

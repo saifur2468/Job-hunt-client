@@ -10,7 +10,7 @@ const MyPostedJobs = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/my-jobs/${user?.email}`)
+            fetch(`https://kidimuservercholena.vercel.app/my-jobs/${user?.email}`)
                 .then(res => res.json())
                 .then(data => setJobs(data));
         }
@@ -27,7 +27,7 @@ const MyPostedJobs = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/job/${id}`, { method: 'DELETE' })
+                fetch(`https://kidimuservercholena.vercel.app/job/${id}`, { method: 'DELETE' })
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {

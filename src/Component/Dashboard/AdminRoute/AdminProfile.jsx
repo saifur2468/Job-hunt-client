@@ -14,7 +14,7 @@ const AdminProfile = () => {
 
     useEffect(() => {
 
-        fetch('http://localhost:5000/all-applications')
+        fetch('https://kidimuservercholena.vercel.app/all-applications')
             .then(res => res.json())
             .then(data => {
                 const accepted = data.filter(app => app.status === 'Accepted').length;

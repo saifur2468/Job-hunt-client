@@ -5,15 +5,20 @@ import { Link } from 'react-router-dom';
 
 const JobTabs = () => {
     const [jobs, setJobs] = useState([]);
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
-
-        fetch('http://localhost:5000/Category-jobs')
+        fetch('https://kidimuservercholena.vercel.app/Category-jobs')
             .then(res => res.json())
-            .then(data => setJobs(data))
-            .catch(err => console.error("Data load failed:", err));
+            .then(data => {
+                setJobs(data);
+                setLoading(false); // 🔥 stop loading
+            })
+            .catch(err => {
+                console.error("Data load failed:", err);
+                setLoading(false);
+            });
     }, []);
-
 
     const renderJobsByCategory = (categoryName) => {
         const filteredJobs = jobs.filter(job => job.category === categoryName);
@@ -51,44 +56,49 @@ const JobTabs = () => {
                 Browse Jobs By Category
             </h1>
 
-            <Tabs>
-                <div className="flex justify-center mb-10">
-                    <TabList className="flex flex-wrap gap-4 border-b-0 justify-center">
-                        <Tab className="btn btn-outline btn-primary px-6" selectedClassName="btn-active">Web Development</Tab>
-                        <Tab className="btn btn-outline btn-primary px-6" selectedClassName="btn-active">UI/UX Design</Tab>
-                        <Tab className="btn btn-outline btn-primary px-6" selectedClassName="btn-active">Graphics Design</Tab>
-                        <Tab className="btn btn-outline btn-primary px-6" selectedClassName="btn-active">Backend Development</Tab>
-                    </TabList>
-                </div>
-
-                {/* Web Development Panel */}
-                <TabPanel>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {renderJobsByCategory('Web Development')}
+            {/* 🔥 Spinner */}
+            {
+                loading ? (
+                    <div className="flex justify-center items-center h-40">
+                        <div className="w-10 h-10 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
                     </div>
-                </TabPanel>
+                ) : (
+                    <Tabs>
+                        <div className="flex justify-center mb-10">
+                            <TabList className="flex flex-wrap gap-4 border-b-0 justify-center">
+                                <Tab className="btn btn-outline btn-primary px-6" selectedClassName="btn-active">Web Development</Tab>
+                                <Tab className="btn btn-outline btn-primary px-6" selectedClassName="btn-active">UI/UX Design</Tab>
+                                <Tab className="btn btn-outline btn-primary px-6" selectedClassName="btn-active">Graphics Design</Tab>
+                                <Tab className="btn btn-outline btn-primary px-6" selectedClassName="btn-active">Backend Development</Tab>
+                            </TabList>
+                        </div>
 
-                {/* UI/UX Design Panel */}
-                <TabPanel>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {renderJobsByCategory('UI/UX Design')}
-                    </div>
-                </TabPanel>
+                        <TabPanel>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {renderJobsByCategory('Web Development')}
+                            </div>
+                        </TabPanel>
 
-                {/* Graphics Design Panel */}
-                <TabPanel>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {renderJobsByCategory('Graphics Design')}
-                    </div>
-                </TabPanel>
+                        <TabPanel>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {renderJobsByCategory('UI/UX Design')}
+                            </div>
+                        </TabPanel>
 
-                {/* Backend Development Panel */}
-                <TabPanel>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {renderJobsByCategory('Backend Development')}
-                    </div>
-                </TabPanel>
-            </Tabs>
+                        <TabPanel>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {renderJobsByCategory('Graphics Design')}
+                            </div>
+                        </TabPanel>
+
+                        <TabPanel>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {renderJobsByCategory('Backend Development')}
+                            </div>
+                        </TabPanel>
+                    </Tabs>
+                )
+            }
         </div>
     );
 };
